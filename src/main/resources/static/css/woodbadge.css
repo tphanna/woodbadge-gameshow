@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    text-align: center;
+    position: relative;
+    background-color: #b3d9ff;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #264d73;
+}
+
+li {
+    float: left;
+}
+
+li.selected {
+    float: left;
+    background-color: #538cc6;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+div.card {
+    width: 150px;
+    height: 100px;
+    margin: 24px 0;
+    padding: 16px;
+    font-size: 18pt;
+    background-color: white;
+}
+
+div.card_answered {
+    width: 150px;
+    height: 100px;
+    margin: 24px 0;
+    padding: 16px;
+    font-size: 18pt;
+    background-color: darkgray;
+    color: gray;
+}
+
+div.card:hover {
+    width: 150px;
+    height: 100px;
+    margin: 24px 0;
+    padding: 16px;
+    font-size: 18pt;
+    color: white;
+    background-color: #264d73;
+}
+
+div.gameboard {
+    padding: 16px;
+    align: center;
+    width: 1350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.gameboard-column {
+    float: left;
+    padding: 16px;
+}
+
+.modal {
+    width: 1150px;
+    height: 650px;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 24pt;
+    z-index: 11; /* 1px higher than the overlay layer */
+}
+
+
+.button {
+    background-color: #b3d9ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+.question {
+    padding: 25px;
+}
+
+.icon {
+    width: 70px;
+}
+
+.selectedicon {
+    width: 250px;
+}
+
+.scoreboardicon {
+    height: 225px;
+    vertical-align: middle;
+}
+
+.scoreboardpositive {
+    font-size: 36px;
+    color: white;
+}
+
+.scoreboardnegative {
+    font-size: 36px;
+    color: darkred;
+}

@@ -1,0 +1,87 @@
+<div class="gameboard" ng-controller="roundController">
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">Cubs</div>
+        <div ng-repeat="(key, value) in questions['CUBS']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">Scouts</div>
+        <div ng-repeat="(key, value) in questions['SCOUTS']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">Varsity</div>
+        <div ng-repeat="(key, value) in questions['VARSITY']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">Venture</div>
+        <div ng-repeat="(key, value) in questions['VENTURE']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">District</div>
+        <div ng-repeat="(key, value) in questions['DISTRICT']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">Training</div>
+        <div ng-repeat="(key, value) in questions['TRAINING']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="gameboard-column">
+        <div class="w3-card-4 card">Leadership</div>
+        <div ng-repeat="(key, value) in questions['LEADERSHIP']"
+             ng-click="getQuestion(value.category, value.points);"
+             ng-class="{'w3-card-4 card' : !value.answered, 'w3-card-4 card_answered' : value.answered}">{{ value.points }}</div>
+    </div>
+    <div class="overlay" ng-show="showQuestion"></div>
+    <div class="modal" ng-show="showQuestion">
+        <div class="question">{{question.question}}</div>
+        <div>
+            <button class="button" ng-click="answerQuestion('correct');">Correct</button>
+            <button class="button" ng-click="answerQuestion('incorrect');">Incorrect</button>
+            <button class="button" ng-click="cancelQuestion();">Cancel</button>
+        </div>
+        <div style="padding:20px;">
+            <img class="icon" ng-click="showCritter = 'beaver'" src="images/big-beaver.jpg"/>
+            <img class="icon" ng-click="showCritter = 'bobwhite'" src="images/big-bobwhite.jpg"/>
+            <img class="icon" ng-click="showCritter = 'eagle'" src="images/big-eagle.jpg"/>
+            <img class="icon" ng-click="showCritter = 'fox'" src="images/big-fox.jpg"/>
+            <img class="icon" ng-click="showCritter = 'owl'" src="images/big-owl.jpg"/>
+            <img class="icon" ng-click="showCritter = 'bear'" src="images/big-bear.jpg"/>
+            <img class="icon" ng-click="showCritter = 'buffalo'" src="images/big-buffalo.jpg"/>
+            <img class="icon" ng-click="showCritter = 'antelope'" src="images/big-antelope.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'beaver'">
+            <img class="selectedicon" src="images/big-beaver.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'bobwhite'">
+            <img class="selectedicon" src="images/big-bobwhite.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'eagle'">
+            <img class="selectedicon" src="images/big-eagle.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'fox'">
+            <img class="selectedicon" src="images/big-fox.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'owl'">
+            <img class="selectedicon" src="images/big-owl.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'bear'">
+            <img class="selectedicon" src="images/big-bear.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'buffalo'">
+            <img class="selectedicon" src="images/big-buffalo.jpg"/>
+        </div>
+        <div ng-show="showCritter == 'antelope'">
+            <img class="selectedicon" src="images/big-antelope.jpg"/>
+        </div>
+    </div>
+</div>

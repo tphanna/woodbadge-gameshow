@@ -1,0 +1,24 @@
+<html ng-app="gameshowApp">
+    <head>
+        <link rel="stylesheet" href="css/woodbadge.css"/>
+        <link rel="stylesheet" href="css/w3.css"/>
+        <script src="angular.min.js"></script>
+        <script src="angular-route.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+
+    <body ng-controller="mainController">
+        <ul>
+            <li ng-class="{'selected':$route.current.activetab == 'start'}"><a href="#start">Welcome</a></li>
+            <li ng-class="{'selected':$route.current.activetab == 'round1'}"><a href="#round1">Round 1</a></li>
+            <li ng-class="{'selected':$route.current.activetab == 'round2'}"><a href="#round2">Round 2</a></li>
+            <li ng-class="{'selected':$route.current.activetab == 'round3'}"><a href="#round3">Round 3</a></li>
+            <li ng-class="{'selected':$route.current.activetab == 'final'}"><a href="#finalQuestion">Final</a></li>
+            <li ng-class="{'selected':$route.current.activetab == 'score'}"><a href="#score">Scoreboard</a></li>
+        </ul>
+        <div id="main">
+            <div ng-view></div>
+        </div>
+    </body>
+
+</html>
