@@ -8,8 +8,10 @@ import org.hanna.woodbadge.gameshow.model.Category;
 import org.hanna.woodbadge.gameshow.model.Critter;
 import org.hanna.woodbadge.gameshow.model.Question;
 import org.hanna.woodbadge.gameshow.model.QuestionKey;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,8 @@ public class GameShowService {
 
     private Map<QuestionKey, Question> questions;
     private Map<Critter, Integer> score;
+    @Autowired
+    private GameShowRepository repository;
 
     public GameShowService() {
 
@@ -144,20 +148,52 @@ public class GameShowService {
         questions.put(new QuestionKey(3, Category.LEADERSHIP, 400), new Question(3, Category.LEADERSHIP, 400, "What are the BSA’s four steps to advancement?"));
     }
 
+    @PostConstruct
+    public void init() {
+        Map<QuestionKey, Question> questions = this.repository.getGameBoard();
+        if (questions != null && !questions.isEmpty()) {
+            this.questions = questions;
+        }
+
+        Map<Critter, Integer> score = this.repository.getScore();
+        if (score != null && !score.isEmpty()) {
+            this.score = score;
+        }
+    }
+
     public Question getQuestion(int round, Category category, int points) {
         return questions.get(new QuestionKey(round, category, points));
+    }
+
+    public void answerQuestion(int round, Category category, int points) {
+        Question question = this.getQuestion(round, category, points);
+        question.setAnswered(true);
+        repository.storeGameBoard(this.questions);
     }
 
     public void correctScore(Critter critter, int points) {
         int totalPoints = score.get(critter);
         totalPoints += points;
         score.put(critter, totalPoints);
+        repository.storeScore(this.score);
     }
 
     public void incorrectScore(Critter critter, int points) {
         int totalPoints = score.get(critter);
         totalPoints -= points;
         score.put(critter, totalPoints);
+        repository.storeScore(this.score);
+    }
+
+    public void finalQuestion(Critter critter, int points, boolean correct) {
+        int totalPoints = score.get(critter);
+        if (correct) {
+            totalPoints += points;
+        } else {
+            totalPoints -= points;
+        }
+        score.put(critter, totalPoints);
+        repository.storeScore(score);
     }
 
     public Map<Category, Collection<Question>> getQuestions(int round) {
@@ -169,6 +205,10 @@ public class GameShowService {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         filteredQuestions.forEach((k,v) -> roundMap.put(k.getCategory(), v));
         return roundMap.asMap();
+    }
+
+    public Map<Critter, Integer> getScore() {
+        return this.score;
     }
 
 }

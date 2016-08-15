@@ -5,4 +5,8 @@ package org.hanna.woodbadge.gameshow.model;
  */
 public enum Critter {
     BEAVER, BOBWHITE, EAGLE, FOX, OWL, BEAR, BUFFALO, ANTELOPE;
+
+    public String toString() {
+        return this.name();
+    }
 }

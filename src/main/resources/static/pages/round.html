@@ -47,17 +47,18 @@
         <div>
             <button class="button" ng-click="answerQuestion('correct');">Correct</button>
             <button class="button" ng-click="answerQuestion('incorrect');">Incorrect</button>
+            <button class="button" ng-click="answerQuestion('noAnswer');">No Answer</button>
             <button class="button" ng-click="cancelQuestion();">Cancel</button>
         </div>
         <div style="padding:20px;">
-            <img class="icon" ng-click="showCritter = 'beaver'" src="images/big-beaver.jpg"/>
-            <img class="icon" ng-click="showCritter = 'bobwhite'" src="images/big-bobwhite.jpg"/>
-            <img class="icon" ng-click="showCritter = 'eagle'" src="images/big-eagle.jpg"/>
-            <img class="icon" ng-click="showCritter = 'fox'" src="images/big-fox.jpg"/>
-            <img class="icon" ng-click="showCritter = 'owl'" src="images/big-owl.jpg"/>
-            <img class="icon" ng-click="showCritter = 'bear'" src="images/big-bear.jpg"/>
-            <img class="icon" ng-click="showCritter = 'buffalo'" src="images/big-buffalo.jpg"/>
-            <img class="icon" ng-click="showCritter = 'antelope'" src="images/big-antelope.jpg"/>
+            <img class="icon" ng-click="showCritter = 'beaver'; startTimer();" src="images/big-beaver.jpg"/>
+            <img class="icon" ng-click="showCritter = 'bobwhite'; startTimer();" src="images/big-bobwhite.jpg"/>
+            <img class="icon" ng-click="showCritter = 'eagle'; startTimer();" src="images/big-eagle.jpg"/>
+            <img class="icon" ng-click="showCritter = 'fox'; startTimer();" src="images/big-fox.jpg"/>
+            <img class="icon" ng-click="showCritter = 'owl'; startTimer();" src="images/big-owl.jpg"/>
+            <img class="icon" ng-click="showCritter = 'bear'; startTimer();" src="images/big-bear.jpg"/>
+            <img class="icon" ng-click="showCritter = 'buffalo'; startTimer();" src="images/big-buffalo.jpg"/>
+            <img class="icon" ng-click="showCritter = 'antelope'; startTimer();" src="images/big-antelope.jpg"/>
         </div>
         <div ng-show="showCritter == 'beaver'">
             <img class="selectedicon" src="images/big-beaver.jpg"/>
@@ -82,6 +83,9 @@
         </div>
         <div ng-show="showCritter == 'antelope'">
             <img class="selectedicon" src="images/big-antelope.jpg"/>
+        </div>
+        <div ng-show="showCritter">
+            <h1>{{timer}}</h1>
         </div>
     </div>
 </div>

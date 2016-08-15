@@ -1,3 +1,80 @@
-<div>
-    finalQuestion
+<div style="padding:40px;" ng-controller="finalController">
+    <table>
+        <tbody>
+            <tr>
+                <td align="center"><img class="scoreboardicon" src="images/beaver-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/bobwhite-tough-600h-8.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/eagle-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/fox-tough-600h.png"/></td>
+            </tr>
+            <tr>
+                <td ng-class="{scoreboardpositive: score['BEAVER'] > 0, scoreboardnegative: score['BEAVER'] <= 0}" align="center">{{ score['BEAVER'] }}</td>
+                <td ng-class="{scoreboardpositive: score['BOBWHITE'] > 0, scoreboardnegative: score['BOBWHITE'] <= 0}" align="center">{{ score['BOBWHITE'] }}</td>
+                <td ng-class="{scoreboardpositive: score['EAGLE'] > 0, scoreboardnegative: score['EAGLE'] <= 0}" align="center">{{ score['EAGLE'] }}</td>
+                <td ng-class="{scoreboardpositive: score['FOX'] > 0, scoreboardnegative: score['FOX'] <= 0}" align="center">{{ score['FOX'] }}</td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input placeholder="Wager" style="width: 75px;" ng-model="beaverWager">
+                    <button class="finalButton" ng-click="finalQuestion(beaverWager,'BEAVER',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(beaverWager,'BEAVER',false)">Incorrect</button>
+                </td>
+                <td align="center"><input placeholder="Wager" style="width: 75px;" ng-model="bobwhiteWager">
+                    <button class="finalButton" ng-click="finalQuestion(bobwhiteWager,'BOBWHITE',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(bobwhiteWager,'BOBWHITE',false)">Incorrect</button>
+                </td>
+                <td align="center">
+                    <input placeholder="Wager" style="width: 75px;" ng-model="eagleWager">
+                    <button class="finalButton" ng-click="finalQuestion(eagleWager,'EAGLE',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(eagleWager,'EAGLE',false)">Incorrect</button>
+                </td>
+                <td align="center">
+                    <input placeholder="Wager" style="width: 75px;" ng-model="foxWager">
+                    <button class="finalButton" ng-click="finalQuestion(foxWager,'FOX',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(foxWager,'FOX',false)">Incorrect</button>
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><img class="scoreboardicon" src="images/owl-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/bear-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/buffalo-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/antelope-tough-600h.png"/></td>
+            </tr>
+            <tr>
+                <td ng-class="{scoreboardpositive: score['OWL'] > 0, scoreboardnegative: score['OWL'] <= 0}" align="center">{{ score['OWL'] }}</td>
+                <td ng-class="{scoreboardpositive: score['BEAR'] > 0, scoreboardnegative: score['BEAR'] <= 0}" align="center">{{ score['BEAR'] }}</td>
+                <td ng-class="{scoreboardpositive: score['BUFFALO'] > 0, scoreboardnegative: score['BUFFALO'] <= 0}" align="center">{{ score['BUFFALO'] }}</td>
+                <td ng-class="{scoreboardpositive: score['ANTELOPE'] > 0, scoreboardnegative: score['ANTELOPE'] <= 0}" align="center">{{ score['ANTELOPE'] }}</td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input placeholder="Wager" style="width: 75px;" ng-model="owlWager">
+                    <button class="finalButton" ng-click="finalQuestion(owlWager,'OWL',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(owlWager,'OWL',false)">Incorrect</button>
+                </td>
+                <td align="center"><input placeholder="Wager" style="width: 75px;" ng-model="bearWager">
+                    <button class="finalButton" ng-click="finalQuestion(bearWager,'BEAR',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(bearWager,'BEAR',false)">Incorrect</button>
+                </td>
+                <td align="center">
+                    <input placeholder="Wager" style="width: 75px;" ng-model="buffaloWager">
+                    <button class="finalButton" ng-click="finalQuestion(buffaloWager,'BUFFALO',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(buffaloWager,'BUFFALO',false)">Incorrect</button>
+                </td>
+                <td align="center">
+                    <input placeholder="Wager" style="width: 75px;" ng-model="antelopeWager">
+                    <button class="finalButton" ng-click="finalQuestion(antelopeWager,'ANTELOPE',true)">Correct</button>
+                    <button class="finalButton" ng-click="finalQuestion(antelopeWager,'ANTELOPE',false)">Incorrect</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><button class="finalButton" ng-click="toggleFinalQuestion()">Show Question</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="overlay" ng-show="showQuestion"></div>
+    <div class="modal" ng-show="showQuestion">
+        <div class="question">In what year did scouting come to the United States?</div>
+        <button ng-click="toggleFinalQuestion()" class="button">Close</button>
+    </div>
 </div>

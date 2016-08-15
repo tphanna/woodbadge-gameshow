@@ -9,6 +9,13 @@ public class QuestionKey {
     private Category category;
     private int points;
 
+    public QuestionKey(String key) {
+        String[] keys = key.split("_");
+        this.round = Integer.parseInt(keys[0]);
+        this.category = Category.valueOf(keys[1]);
+        this.points = Integer.parseInt(keys[2]);
+    }
+
     public QuestionKey(int round, Category category, int points) {
         this.round = round;
         this.category = category;
@@ -46,5 +53,10 @@ public class QuestionKey {
         result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + points;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return round + "_" + category + "_" + points;
     }
 }

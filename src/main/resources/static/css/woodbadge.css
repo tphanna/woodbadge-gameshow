@@ -124,6 +124,7 @@ div.gameboard-column {
 .scoreboardicon {
     height: 225px;
     vertical-align: middle;
+    alignment: center;
 }
 
 .scoreboardpositive {
@@ -134,4 +135,19 @@ div.gameboard-column {
 .scoreboardnegative {
     font-size: 36px;
     color: darkred;
+}
+
+td {
+    padding: 5px;
+}
+
+.finalButton {
+    background-color: #264d73;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

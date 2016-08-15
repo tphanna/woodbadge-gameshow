@@ -34,14 +34,14 @@ gameshowApp.config(function($routeProvider) {
 
         .when('/finalQuestion', {
             templateUrl : 'pages/finalQuestion.html',
-            controller  : 'mainController',
+            controller  : 'finalController',
             activetab   : 'final',
             round       : 4
         })
 
         .when('/score', {
             templateUrl : 'pages/scoreboard.html',
-            controller  : 'mainController',
+            controller  : 'scoreController',
             activetab   : 'score',
             round       : 5
         });
@@ -49,48 +49,98 @@ gameshowApp.config(function($routeProvider) {
 });
 
 
-gameshowApp.controller('mainController', function($scope, $route, $http) {
+gameshowApp.controller('mainController', function($scope, $route) {
     $scope.$route = $route;
 });
 
-gameshowApp.controller('roundController', function($scope, $route, $http) {
+gameshowApp.controller('roundController', function($scope, $route, $http, $interval) {
     $scope.showQuestion = false;
     $scope.showCritter = '';
     $scope.round = $route.current.round;
     $scope.questions = {};
+    $scope.timerPromise = {};
 
     $scope.getQuestion = function (category, points) {
         $scope.questions[category].filter(function(question){if (question.points == points){$scope.question = question;}});
         if (!$scope.question.answered) {
             $scope.showQuestion = true;
         }
-    }
+    };
 
     $scope.getQuestions = function () {
         var url = 'http://localhost:8080/questions/'+$scope.round;
         $http.get(url).success(function(data) {
             $scope.questions = data;
         });
-    }
+    };
 
     $scope.answerQuestion = function(result) {
-        if ($scope.showCritter == '') {
+        if ($scope.showCritter == '' && result != 'noAnswer') {
             return;
         }
-        var url = 'http://localhost:8080/score/'+$scope.round+'/'+ $scope.question.category+'/'+$scope.question.points+'/eagle/' + result;
+        var url = 'http://localhost:8080/score/'+$scope.round+'/'+ $scope.question.category+'/'+$scope.question.points+'/'+$scope.showCritter.toUpperCase()+'/' + result;
         $http.post(url);
         $scope.showCritter = '';
-        if (result == 'correct') {
+        if (result == 'correct' || result == 'noAnswer') {
             $scope.question.answered = true;
             $scope.showQuestion = false;
         }
 
+    };
+
+    $scope.startTimer = function() {
+        if ($scope.timerPromise) {
+            $interval.cancel($scope.timerPromise);
+        }
+        $scope.timer = 10;
+        $scope.timerPromise = $interval(function() {
+            $scope.timer -=1
+            },
+            1000,10);
     }
 
     $scope.cancelQuestion = function() {
         $scope.showQuestion = false;
         $scope.showCritter = '';
-    }
+    };
 
     $scope.getQuestions();
+});
+
+gameshowApp.controller('finalController', function($scope, $route, $http) {
+    $scope.$route = $route;
+    $scope.showQuestion = false;
+
+    $scope.toggleFinalQuestion = function() {
+        $scope.showQuestion = !$scope.showQuestion;
+    };
+
+    $scope.getScore = function () {
+        var url = 'http://localhost:8080/score';
+        $http.get(url).success(function(data) {
+            $scope.score = data;
+        });
+    };
+
+    $scope.finalQuestion = function(points, critter, result) {
+        var url = 'http://localhost:8080/score/final/' + points + '/' + critter + '/' + result;
+        $http.post(url).success(function() {
+            $scope.getScore();
+        });
+    };
+
+    $scope.getScore();
+});
+
+gameshowApp.controller('scoreController', function($scope, $route, $http) {
+    $scope.$route = $route;
+
+    $scope.getScore = function () {
+        var url = 'http://localhost:8080/score';
+        $http.get(url).success(function(data) {
+            $scope.score = data;
+        });
+    };
+
+    $scope.getScore();
 });

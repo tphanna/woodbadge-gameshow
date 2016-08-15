@@ -42,22 +42,47 @@ public class GameShowController {
     }
 
     @RequestMapping(value = "/score/{round}/{category}/{points}/{critter}/correct", method = RequestMethod.POST)
-    public void addPoints(Critter critter,
+    @ResponseBody
+    public void addPoints(@PathVariable("critter") Critter critter,
                           @PathVariable("round") int round,
                           @PathVariable("category") Category category,
                           @PathVariable("points") int points) {
-        //gameShowService.correctScore(critter, points);
+        gameShowService.correctScore(critter, points);
+        gameShowService.answerQuestion(round, category, points);
+    }
+
+    @RequestMapping(value = "/score/{round}/{category}/{points}/{critter}/incorrect", method = RequestMethod.POST)
+    @ResponseBody
+    public void removePoints(@PathVariable("critter") Critter critter,
+                             @PathVariable("round") int round,
+                             @PathVariable("category") Category category,
+                             @PathVariable("points") int points) {
+        gameShowService.incorrectScore(critter, points);
+        gameShowService.answerQuestion(round, category, points);
+    }
+
+
+    @RequestMapping(value = "/score/{round}/{category}/{points}/{critter}/noAnswer", method = RequestMethod.POST)
+    @ResponseBody
+    public void noPoints(@PathVariable("critter") Critter critter,
+                             @PathVariable("round") int round,
+                             @PathVariable("category") Category category,
+                             @PathVariable("points") int points) {
         Question question = gameShowService.getQuestion(round, category, points);
         question.setAnswered(true);
     }
 
-    @RequestMapping(value = "/score/{round}/{category}/{points}/{critter}/incorrect", method = RequestMethod.POST)
-    public void removePoints(Critter critter,
-                             @PathVariable("round") int round,
-                             @PathVariable("category") Category category,
-                             @PathVariable("points") int points) {
-        //gameShowService.incorrectScore(critter, points);
-        Question question = gameShowService.getQuestion(round, category, points);
-        question.setAnswered(true);
+    @RequestMapping(value = "/score/final//{points}/{critter}/{result}", method = RequestMethod.POST)
+    @ResponseBody
+    public void finalQuestion(@PathVariable("critter") Critter critter,
+                              @PathVariable("points") int points,
+                              @PathVariable("result") Boolean result) {
+        gameShowService.finalQuestion(critter, points, result);
+    }
+
+    @RequestMapping(value="/score")
+    @ResponseBody
+    public Map<Critter, Integer> getScore() {
+        return gameShowService.getScore();
     }
 }

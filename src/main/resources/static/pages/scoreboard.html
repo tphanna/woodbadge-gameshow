@@ -1,38 +1,30 @@
-<div>
-    <div style="padding: 20px">
-        <span style="padding: 40px;">
-            <img class="scoreboardicon" src="images/beaver-tough-600h.png"/>
-            <span class="scoreboardpositive">500</span>
-        </span>
-        <span style="padding: 40px;">
-            <span class="scoreboardnegative">-500</span>
-            <img class="scoreboardicon" src="images/bobwhite-tough-600h-8.png"/>
-        </span>
-        <span style="padding: 40px;">
-            <img class="scoreboardicon" src="images/eagle-tough-600h.png"/>
-            <span class="scoreboardpositive">500</span>
-        </span>
-        <span style="padding: 40px;">
-            <span class="scoreboardnegative">-500</span>
-            <img class="scoreboardicon" src="images/fox-tough-600h.png"/>
-        </span>
-    </div>
-    <div style="padding: 20px;">
-        <span style="padding: 40px;">
-            <img class="scoreboardicon" src="images/owl-tough-600h.png"/>
-            <span class="scoreboardpositive">500</span>
-        </span>
-        <span style="padding: 40px;">
-            <span class="scoreboardnegative">-500</span>
-            <img class="scoreboardicon" src="images/bear-tough-600h.png"/>
-        </span>
-        <span style="padding: 40px;">
-            <img class="scoreboardicon" src="images/buffalo-tough-600h.png"/>
-            <span class="scoreboardpositive">500</span>
-        </span>
-        <span style="padding: 40px;">
-            <span class="scoreboardnegative">-500</span>
-            <img class="scoreboardicon" src="images/antelope-tough-600h.png"/>
-        </span>
-    </div>
+<div style="padding:40px;" ng-controller="scoreController">
+    <table>
+        <tbody>
+            <tr>
+                <td align="center"><img class="scoreboardicon" src="images/beaver-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/bobwhite-tough-600h-8.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/eagle-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/fox-tough-600h.png"/></td>
+            </tr>
+            <tr>
+                <td ng-class="{scoreboardpositive: score['BEAVER'] > 0, scoreboardnegative: score['BEAVER'] <= 0}" align="center">{{ score['BEAVER'] }}</td>
+                <td ng-class="{scoreboardpositive: score['BOBWHITE'] > 0, scoreboardnegative: score['BOBWHITE'] <= 0}" align="center">{{ score['BOBWHITE'] }}</td>
+                <td ng-class="{scoreboardpositive: score['EAGLE'] > 0, scoreboardnegative: score['EAGLE'] <= 0}" align="center">{{ score['EAGLE'] }}</td>
+                <td ng-class="{scoreboardpositive: score['FOX'] > 0, scoreboardnegative: score['FOX'] <= 0}" align="center">{{ score['FOX'] }}</td>
+            </tr>
+            <tr>
+                <td align="center"><img class="scoreboardicon" src="images/owl-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/bear-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/buffalo-tough-600h.png"/></td>
+                <td align="center"><img class="scoreboardicon" src="images/antelope-tough-600h.png"/></td>
+            </tr>
+            <tr>
+                <td ng-class="{scoreboardpositive: score['OWL'] > 0, scoreboardnegative: score['OWL'] <= 0}" align="center">{{ score['OWL'] }}</td>
+                <td ng-class="{scoreboardpositive: score['BEAR'] > 0, scoreboardnegative: score['BEAR'] <= 0}" align="center">{{ score['BEAR'] }}</td>
+                <td ng-class="{scoreboardpositive: score['BUFFALO'] > 0, scoreboardnegative: score['BUFFALO'] <= 0}" align="center">{{ score['BUFFALO'] }}</td>
+                <td ng-class="{scoreboardpositive: score['ANTELOPE'] > 0, scoreboardnegative: score['ANTELOPE'] <= 0}" align="center">{{ score['ANTELOPE'] }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

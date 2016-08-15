@@ -10,6 +10,10 @@ public class Question implements Comparable<Question>{
     private String question;
     private boolean answered = false;
 
+    public Question() {
+
+    }
+
     public Question(int round, Category category, int points, String question) {
         this.round = round;
         this.category = category;
