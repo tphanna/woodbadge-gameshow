@@ -43,6 +43,7 @@
     </div>
     <div class="overlay" ng-show="showQuestion"></div>
     <div class="modal" ng-show="showQuestion">
+        <div style="padding:2px; font-size: 12px;">{{question.category}}/{{question.points}}</div>
         <div class="question">{{question.question}}</div>
         <div>
             <button class="button" ng-click="answerQuestion('correct');">Correct</button>

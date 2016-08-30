@@ -41,7 +41,7 @@ public class GameShowService {
         questions = new HashMap<>();
         //round 1
         questions.put(new QuestionKey(1, Category.CUBS, 100), new Question(1, Category.CUBS, 100, "What is the cub scout motto?"));
-        questions.put(new QuestionKey(1, Category.CUBS, 200), new Question(1, Category.CUBS, 200, "What is the minimum amount of time that a boy needs ot be active as a Webelos Scout before he can earn the Webelos badge?"));
+        questions.put(new QuestionKey(1, Category.CUBS, 200), new Question(1, Category.CUBS, 200, "What is the minimum amount of time that a boy needs to be active as a Webelos Scout before he can earn the Webelos badge?"));
         questions.put(new QuestionKey(1, Category.CUBS, 300), new Question(1, Category.CUBS, 300, "How many years must a den leader serve before he/she can earn the Den Leader Training Award?"));
         questions.put(new QuestionKey(1, Category.CUBS, 400), new Question(1, Category.CUBS, 400, "Which Cub Scout adventure is required at each rank?"));
 
